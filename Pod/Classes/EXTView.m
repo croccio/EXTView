@@ -18,8 +18,8 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.colors = @[(__bridge id)CGColorRetain([UIColor clearColor].CGColor),
-                        (__bridge id)CGColorRetain([UIColor clearColor].CGColor)];
+        self.colors = @[(id)([UIColor clearColor].CGColor),
+                        (id)([UIColor clearColor].CGColor)];
     }
     return self;
 }
@@ -32,7 +32,7 @@
 
 - (CGColorRef)startColor
 {
-    return (__bridge CGColorRef)self.colors.firstObject;
+    return CFBridgingRetain(self.colors.firstObject);
 }
 
 - (void)setStartColor:(CGColorRef)startColor
@@ -45,7 +45,7 @@
 
 - (CGColorRef)endColor
 {
-    return (__bridge CGColorRef)self.colors.lastObject;
+    return CFBridgingRetain(self.colors.lastObject);
 }
 
 - (void)setEndColor:(CGColorRef)endColor
